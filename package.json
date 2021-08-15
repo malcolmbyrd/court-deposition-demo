@@ -1,6 +1,5 @@
 {
   "name": "frontend",
-  "homepage": "https://malcolmbyrd.github.io/court-deposition-provider-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
