@@ -1,0 +1,240 @@
+/* Jobs View */
+.jobs-button-container {
+  text-align: center;
+  width: 100%;
+
+  .jobs-button {
+    margin: 10px auto;
+  }
+}
+
+.jobs-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.job-listing {
+  border: 1px solid gray;
+  border-radius: 2px;
+  margin: 10px 25px;
+  transition: box-shadow .3s;
+  width: 500px;
+
+  &:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    cursor: pointer;
+  }
+}
+
+.jobs-modal-content {
+  tr {
+    border: 1px dotted gray;
+  }
+}
+/* Table styles */
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #ecf7fd;
+  padding: .35em;
+
+  :first-child {
+    font-weight: bold;
+  }
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.provider-detail-container {
+  width: 100%;
+}
+
+.provider-detail-table-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  table {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 2.5px 5px;
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 990;
+
+  .modal-inner {
+    background-color: white;
+    border-radius: 10px;
+    height: auto;
+    margin: 100px auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+    max-width: 1000px;
+  }
+
+  .modal-header {
+    background: #c9d6e7;
+    border-bottom: 1px solid #ccc;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    display: inline-flex;
+    padding: 16px;
+    width: 100%;
+
+    .modal-close {
+      width: 68%;
+
+      svg {
+        float: right;
+        font-size: 25px;
+        padding-right: 20px;
+      }
+    }
+
+    .modal-title {
+      position: relative;
+
+      h1 {
+        font-weight: 500;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+      }
+
+      button {
+        position: absolute;
+        top: 0;
+        right: -9px;
+        border: none;
+        background: none;
+        color: darken(gray, 25%);
+        font-size: 24px;
+        cursor: pointer;
+
+        &:hover {
+          color: darken(gray, 40%)
+        }
+      }
+    }
+  }
+
+  .modal-content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding: 16px;
+    max-height: 550px;
+
+    table {
+      width: 100%;
+
+      td {
+        padding: 8px;
+      }
+
+      thead {
+        font-size: 14px;
+        font-weight: bold;
+        position: relative !important;
+      }
+
+      tbody {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .modal-footer {
+    background: #c9d6e7;
+    border-top: 1px solid gray;
+    padding: 16px;
+  }
+}
+
+.modal.modal-outer {
+  background: rgba(0, 0, 0, 0.47);
+  z-index: 1010;
+}
+
+@media (max-width: 1024px) {
+  .modal .modal-inner {
+    font-size: 16px;
+    width: 75vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal .modal-inner {
+    font-size: 13px;
+    width: 95vw;
+  }
+}
