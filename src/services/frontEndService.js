@@ -2,11 +2,11 @@ import JobsMock from "../mockData/jobsMock";
 import ProvidersMock from "../mockData/providersMock";
 
 const fetchJobs = async () => {
-  return JobsMock
+  return JobsMock.getJobsMock
 }
 
 const fetchProviders = async () => {
-  return ProvidersMock
+  return ProvidersMock.getProvidersMock
 }
 
 const FrontEndService = {fetchJobs, fetchProviders};
