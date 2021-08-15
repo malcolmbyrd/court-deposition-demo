@@ -1,6 +1,6 @@
 import React from "react";
 
-const SuperlativeTableHeaders = ({ job }) => {
+const SuperlativeTableHeaders = ({ job, fastestProviderTime }) => {
   return (
     <thead>
       <tr>
@@ -9,7 +9,9 @@ const SuperlativeTableHeaders = ({ job }) => {
           <th>Closest Provider</th>
         )}
         <th>Highest Rated Provider</th>
+        {(fastestProviderTime && fastestProviderTime > 0 && fastestProviderTime < 100) && (
         <th>Fastest Provider</th>
+        )}
       </tr>
     </thead>
   )
