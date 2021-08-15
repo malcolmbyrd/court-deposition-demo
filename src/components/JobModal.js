@@ -6,6 +6,7 @@ import {Context} from "../store";
 import ProviderListing from "./ProviderListing";
 import ProviderDetail from "./ProviderDetail";
 import ProviderTableHeaders from "./ProviderTableHeaders";
+import SuperlativeTableHeaders from "./SuperlativeTableHeaders";
 
 const JobModal = ({job, closeFunction}) => {
   const [state, dispatch] = useContext(Context)
@@ -77,30 +78,32 @@ const JobModal = ({job, closeFunction}) => {
       <Header title={'Providers Available For Job'} closeFunction={closeFunction}/>
 
       <p>
-        &nbsp;If one provider fulfills more than one criteria superlative, they are likely a strong candidate for the job.
+        If one provider fulfills more than one criteria superlative, they are likely a strong candidate for the job.
       </p>
 
-      <p>
-        <br />
-        &nbsp;The cheapest provider has an average page cost of <b>${minCost}</b>
-      </p>
-
-      {job.location_type !== 'REMOTE' && (
-        <p>
-          <br />
-          &nbsp;The closest provider is {minDistance}km away
-        </p>
-      )}
-
-      <p>
-        <br />
-        &nbsp;The highest average provider rating is: <b>{bestProviderRating}</b>
-      </p>
-
-      <p>
-        <br />
-        &nbsp;The fastest provider has an average completion time of <b>{fastestProviderTime}</b> days
-      </p>
+      <div className='jobs-modal-content'>
+        <table>
+          <SuperlativeTableHeaders job={job} />
+          <tbody>
+          <tr>
+            <td>
+              ${minCost}
+            </td>
+            {job.location_type !== 'REMOTE' && (
+              <td>
+                {minDistance}km
+              </td>
+            )}
+            <td>
+              {bestProviderRating}
+            </td>
+            <td>
+              {fastestProviderTime}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
       <Content className='jobs-modal-content'>
         {viewingProviders && (
