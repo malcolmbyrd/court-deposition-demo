@@ -116,7 +116,10 @@ table th {
     cursor: pointer;
     display: inline-flex;
     padding: 16px;
+    position: sticky;
+    top: 0;
     width: 100%;
+    z-index: 999;
 
     .modal-close {
       width: 68%;
