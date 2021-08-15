@@ -98,7 +98,7 @@ const JobModal = ({job, closeFunction}) => {
               {bestProviderRating}
             </td>
             <td>
-              {fastestProviderTime}
+              {fastestProviderTime} days
             </td>
           </tr>
           </tbody>
