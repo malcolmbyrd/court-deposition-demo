@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "homepage": "https://malcolmbyrd.github.io/court-deposition-provider-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

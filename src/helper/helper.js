@@ -91,3 +91,7 @@ export const getAvgTimeToCompletion = (jobs, provider) => {
 
   return result
 }
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};

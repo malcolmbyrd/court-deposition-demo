@@ -6,9 +6,8 @@ const ProviderListing = ({
                            job,
                            provider,
                            onClick,
-                           cheapestProvider,
-                           setCheapestProvider,
-                           setCheapestProviderCost,
+                           providerCostData,
+                           setProviderCostData,
                            closestProvider,
                            setClosestProvider,
                            closestProviderDistance,
@@ -49,10 +48,8 @@ const ProviderListing = ({
   useEffect(() => {
 
     if (avgCostPerPage > 0) {
-      if ((avgCostPerPage < cheapestProvider.avg_cost_per_page)) {
-        setCheapestProvider(provider)
-        setCheapestProviderCost(avgCostPerPage)
-      }
+      let index = providerCostData.length
+      setProviderCostData(providerCostData => [...providerCostData, avgCostPerPage]);
     }
 
     if (distanceFromJob > 0) {

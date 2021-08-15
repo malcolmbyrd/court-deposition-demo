@@ -12,11 +12,8 @@ const JobModal = ({job, closeFunction}) => {
   const [viewingProviders, setViewingProviders] = useState(true) // Toggle between list and individual
   const [viewingProvider, setViewingProvider] = useState({}) // Store single provider for detail view
 
-  const [cheapestProvider, setCheapestProvider] = useState({
-    full_name: 'Expensive Provider',
-    avg_cost_per_page: '99999999'
-  })
-  const [cheapestProviderCost, setCheapestProviderCost] = useState(0)
+  const [providerCostData, setProviderCostData] = useState([])
+  const [minCost, setMinCost] = useState(9999)
 
   const [closestProvider, setClosestProvider] = useState({})
   const [closestProviderDistance, setClosestProviderDistance] = useState('9999')
@@ -44,6 +41,16 @@ const JobModal = ({job, closeFunction}) => {
     getProviders()
   }, [])
 
+  useEffect(() => {
+    if (providerCostData.length > 0) {
+      let cheapestProviderCost = Math.min.apply(null, providerCostData)
+
+      if (cheapestProviderCost < minCost) {
+        setMinCost(cheapestProviderCost)
+      }
+    }
+  }, [providerCostData])
+
   return (
     <Modal classname='jobs-modal'>
       <Header title={'Providers Available For Job'} closeFunction={closeFunction}/>
@@ -54,8 +61,7 @@ const JobModal = ({job, closeFunction}) => {
 
       <p>
         <br />
-        &nbsp;The cheapest provider is: <b>{cheapestProvider.full_name}</b>,
-        with an average page cost of <b>${cheapestProviderCost}</b>
+        &nbsp;The cheapest provider has an average page cost of <b>${minCost}</b>
       </p>
 
       {job.location_type !== 'REMOTE' && (
@@ -90,9 +96,8 @@ const JobModal = ({job, closeFunction}) => {
                     job={job}
                     provider={provider}
                     onClick={() => viewProvider(provider)}
-                    cheapestProvider={cheapestProvider}
-                    setCheapestProvider={setCheapestProvider}
-                    setCheapestProviderCost={setCheapestProviderCost}
+                    providerCostData={providerCostData}
+                    setProviderCostData={setProviderCostData}
                     closestProvider={closestProvider}
                     setClosestProvider={setClosestProvider}
                     closestProviderDistance={closestProviderDistance}
