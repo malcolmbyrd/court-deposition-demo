@@ -9,7 +9,6 @@ const ProviderListing = ({
                            setProviderCostData,
                            setProviderDistanceData,
                            setProviderRatingData,
-                           providerSpeedData,
                            setProviderSpeedData
                          }) => {
 
@@ -37,7 +36,6 @@ const ProviderListing = ({
   }, [])
 
   useEffect(() => {
-
     if (avgCostPerPage > 0) {
       setProviderCostData(providerCostData => [...providerCostData, avgCostPerPage]);
     }
@@ -61,7 +59,7 @@ const ProviderListing = ({
         <a href='#'>{provider.full_name}</a>
       </td>
       <td className='job-distance'>
-        {distanceFromJob > 0 ? (distanceFromJob + ' km') : ('N/A or REMOTE')}
+        {distanceFromJob > 0 ? (distanceFromJob + ' km') : ('REMOTE')}
       </td>
       <td className='average-page-cost-data'>
         {(avgCostPerPage !== 0) ?

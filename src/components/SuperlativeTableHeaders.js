@@ -5,9 +5,9 @@ const SuperlativeTableHeaders = ({ job, fastestProviderTime }) => {
     <thead>
       <tr>
         <th>Cheapest Provider</th>
-        {job.location_type !== 'REMOTE' && (
+        {(job.location_type !== 'REMOTE') ? (
           <th>Closest Provider</th>
-        )}
+        ) : <th>Remote Job</th>}
         <th>
           Highest Rated Provider
         </th>

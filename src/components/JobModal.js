@@ -89,11 +89,11 @@ const JobModal = ({job, closeFunction}) => {
             <td>
               ${minCost}
             </td>
-            {job.location_type !== 'REMOTE' && (
+            {job.location_type !== 'REMOTE' ? (
               <td>
                 {minDistance}km
               </td>
-            )}
+            ) : <td>Consider Remote Provider</td>}
             <td>
               {bestProviderRating}
             </td>
