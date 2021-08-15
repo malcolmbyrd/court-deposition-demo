@@ -83,7 +83,7 @@ const JobModal = ({job, closeFunction}) => {
 
       <div className='jobs-modal-content'>
         <table>
-          <SuperlativeTableHeaders job={job} />
+          <SuperlativeTableHeaders job={job}/>
           <tbody>
           <tr>
             <td>
@@ -97,9 +97,11 @@ const JobModal = ({job, closeFunction}) => {
             <td>
               {bestProviderRating}
             </td>
-            <td>
-              {fastestProviderTime} days
-            </td>
+            {(fastestProviderTime && fastestProviderTime > 0 && fastestProviderTime < 100) && (
+              <td>
+                {fastestProviderTime} days
+              </td>
+            )}
           </tr>
           </tbody>
         </table>
@@ -108,7 +110,7 @@ const JobModal = ({job, closeFunction}) => {
       <Content className='jobs-modal-content'>
         {viewingProviders && (
           <table>
-            <ProviderTableHeaders />
+            <ProviderTableHeaders/>
             <tbody>
             {state.providers.length > 0 && (state.providers.map((provider, i) => {
                 return (
