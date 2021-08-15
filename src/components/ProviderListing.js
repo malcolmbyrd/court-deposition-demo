@@ -6,20 +6,11 @@ const ProviderListing = ({
                            job,
                            provider,
                            onClick,
-                           providerCostData,
                            setProviderCostData,
-                           closestProvider,
-                           setClosestProvider,
-                           closestProviderDistance,
-                           setClosestProviderDistance,
-                           highestRatedProvider,
-                           setHighestRatedProvider,
-                           bestProviderRating,
-                           setBestProviderRating,
-                           fastestProvider,
-                           fastestProviderTime,
-                           setFastestProvider,
-                           setFastestProviderTime,
+                           setProviderDistanceData,
+                           setProviderRatingData,
+                           providerSpeedData,
+                           setProviderSpeedData
                          }) => {
 
   const [state, dispatch] = useContext(Context)
@@ -48,41 +39,19 @@ const ProviderListing = ({
   useEffect(() => {
 
     if (avgCostPerPage > 0) {
-      let index = providerCostData.length
       setProviderCostData(providerCostData => [...providerCostData, avgCostPerPage]);
     }
 
     if (distanceFromJob > 0) {
-      if (!closestProvider.longitude && provider.latitude && provider.longitude) {
-        setClosestProvider(provider)
-        setClosestProviderDistance(distanceFromJob)
-      }
-      else if (closestProviderDistance && (distanceFromJob < parseInt(closestProviderDistance))) {
-        setClosestProvider(provider)
-        setClosestProviderDistance(distanceFromJob)
-      }
+      setProviderDistanceData(providerDistanceData => [...providerDistanceData, distanceFromJob]);
     }
 
     if (avgProviderRating > 0) {
-      if (!highestRatedProvider.full_name && avgProviderRating > 0) {
-        setHighestRatedProvider(provider)
-        setBestProviderRating(avgProviderRating)
-      }
-    }
-    else if (bestProviderRating > 0 && ((avgProviderRating > 0) && (avgProviderRating < bestProviderRating))) {
-      setHighestRatedProvider(provider)
-      setBestProviderRating(avgProviderRating)
+      setProviderRatingData(providerRatingData => [...providerRatingData, avgProviderRating]);
     }
 
     if (avgTime > 0) {
-      if (!fastestProvider.full_name && avgTime > 0) {
-        setFastestProvider(provider)
-        setFastestProviderTime(avgTime)
-      }
-    }
-    else if (fastestProviderTime > 0 && ((avgTime > 0) && (avgTime < fastestProviderTime))) {
-      setFastestProvider(provider)
-      setFastestProviderTime(avgTime)
+      setProviderSpeedData(providerSpeedData => [...providerSpeedData, avgTime]);
     }
   }, [avgCostPerPage, distanceFromJob])
 

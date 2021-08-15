@@ -15,14 +15,14 @@ const JobModal = ({job, closeFunction}) => {
   const [providerCostData, setProviderCostData] = useState([])
   const [minCost, setMinCost] = useState(9999)
 
-  const [closestProvider, setClosestProvider] = useState({})
-  const [closestProviderDistance, setClosestProviderDistance] = useState('9999')
+  const [providerDistanceData, setProviderDistanceData] = useState([])
+  const [minDistance, setMinDsitance] = useState('9999')
 
-  const [highestRatedProvider, setHighestRatedProvider] = useState({})
+  const [providerRatingData, setProviderRatingData] = useState([])
   const [bestProviderRating, setBestProviderRating] = useState(9)
 
-  const [fastestProvider, setFastestProvider] = useState({})
-  const [fastestProviderTime, setFastestProviderTime] = useState(0)
+  const [providerSpeedData, setProviderSpeedData] = useState([])
+  const [fastestProviderTime, setFastestProviderTime] = useState(999999)
 
   const viewProvider = (provider) => {
     setViewingProviders(false)
@@ -49,6 +49,27 @@ const JobModal = ({job, closeFunction}) => {
         setMinCost(cheapestProviderCost)
       }
     }
+    if (providerDistanceData.length > 0) {
+      let closestProviderDistance = Math.min.apply(null, providerDistanceData)
+
+      if (closestProviderDistance < minDistance) {
+        setMinDsitance(closestProviderDistance)
+      }
+    }
+    if (providerRatingData.length > 0) {
+      let highestRating = Math.min.apply(null, providerRatingData)
+
+      if (highestRating < bestProviderRating) {
+        setBestProviderRating(highestRating)
+      }
+    }
+    if (providerSpeedData.length > 0) {
+      let fastestProvider = Math.min.apply(null, providerSpeedData)
+
+      if (fastestProvider < fastestProviderTime) {
+        setFastestProviderTime(fastestProvider)
+      }
+    }
   }, [providerCostData])
 
   return (
@@ -67,21 +88,18 @@ const JobModal = ({job, closeFunction}) => {
       {job.location_type !== 'REMOTE' && (
         <p>
           <br />
-          &nbsp;The closest provider is: <b>{closestProvider.full_name}</b>, {closestProviderDistance}km away
+          &nbsp;The closest provider is {minDistance}km away
         </p>
       )}
 
       <p>
         <br />
-        &nbsp;One of the highest rated providers is: <b>{highestRatedProvider.full_name}</b>,
-        with an average rating of <b>{bestProviderRating}</b>. <br />
-        &nbsp;A rating of 1 is common, so make sure to check other factors.
+        &nbsp;The highest average provider rating is: <b>{bestProviderRating}</b>
       </p>
 
       <p>
         <br />
-        &nbsp;The fastest provider is: <b>{fastestProvider.full_name}</b>,
-        with an average completion time of <b>{fastestProviderTime}</b> days
+        &nbsp;The fastest provider has an average completion time of <b>{fastestProviderTime}</b> days
       </p>
 
       <Content className='jobs-modal-content'>
@@ -98,18 +116,14 @@ const JobModal = ({job, closeFunction}) => {
                     onClick={() => viewProvider(provider)}
                     providerCostData={providerCostData}
                     setProviderCostData={setProviderCostData}
-                    closestProvider={closestProvider}
-                    setClosestProvider={setClosestProvider}
-                    closestProviderDistance={closestProviderDistance}
-                    setClosestProviderDistance={setClosestProviderDistance}
-                    highestRatedProvider={highestRatedProvider}
-                    setHighestRatedProvider={setHighestRatedProvider}
+                    providerDistanceData={providerDistanceData}
+                    setProviderDistanceData={setProviderDistanceData}
+                    providerRatingData={providerRatingData}
+                    setProviderRatingData={setProviderRatingData}
                     bestProviderRating={bestProviderRating}
                     setBestProviderRating={setBestProviderRating}
-                    fastestProvider={fastestProvider}
-                    fastestProviderTime={fastestProviderTime}
-                    setFastestProvider={setFastestProvider}
-                    setFastestProviderTime={setFastestProviderTime}
+                    providerSpeedData={providerSpeedData}
+                    setProviderSpeedData={setProviderSpeedData}
                   />
                 )
               })
