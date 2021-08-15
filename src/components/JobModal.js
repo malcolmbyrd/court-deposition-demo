@@ -83,7 +83,7 @@ const JobModal = ({job, closeFunction}) => {
 
       <div className='jobs-modal-content'>
         <table>
-          <SuperlativeTableHeaders job={job}/>
+          <SuperlativeTableHeaders job={job} fastestProviderTime={fastestProviderTime}/>
           <tbody>
           <tr>
             <td>
